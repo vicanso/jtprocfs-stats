@@ -1,0 +1,17 @@
+{
+  "name": "jtprocfs-stats",
+  "description": "get the system performance",
+  "version": "0.0.1",
+  "main": "index",
+  "dependencies": {
+    "procfs-stats": "0.0.3",
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-coffee": "~0.10.1",
+    "grunt-contrib-jshint": "~0.9.2",
+    "grunt-shell-spawn": "~0.3.0",
+    "jscoverage": "~0.3.8"
+  }
+}
