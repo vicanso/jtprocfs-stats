@@ -1,0 +1,18 @@
+{
+  "net" : {
+    "unit" : "kb",
+    "filter" : ["em1"]
+  },
+  "disk" : {
+    "filter" : ["sda"]
+  },
+  "memory" : {
+    "unit" : "mb"
+  },
+  "stats" : {
+    "host" : "127.0.0.1",
+    "port" : "9300",
+    "category" : "profs-stats-black"
+  },
+  "interval" : 10000
+}
