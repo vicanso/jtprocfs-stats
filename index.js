@@ -68,7 +68,12 @@ var run = function(){
               _.each(v, function(infos, k){
                 var name = interfaceName + '.' + k;
                 _.each(infos, function(v1, k1){
-                  client.gauge(name + '.' + k1, v1);
+                  if(k1 == 'rate'){
+                    client.gauge(name + '.' + k1, v1);
+                  }else{
+                    client.count(name + '.' + k1, v1);
+                  }
+                  
                 });
               });
             });
