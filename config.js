@@ -30,7 +30,7 @@ var conf = {
   stats : {
     host : 'localhost',
     port : '6000',
-    category : 'profs-stats-black',
+    category : 'profs-stats-blue',
     bufferSize : 100
   },
   interval : 10000
