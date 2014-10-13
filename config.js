@@ -12,7 +12,7 @@ var conf = {
   "stats" : {
     "host" : "192.168.1.19",
     "port" : "6000",
-    "category" : "profs-stats-black",
+    "category" : "profs-stats-blue",
     "bufferSize" : 100
   },
   "interval" : 10000
