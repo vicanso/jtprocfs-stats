@@ -7,7 +7,6 @@ var disk = require('./lib/disk');
 var memory = require('./lib/memory');
 var async = require('async');
 var _ = require('underscore');
-var os = require('os');
 var domain = require('domain');
 var config = require('./config');
 var interval = config.get('interval') || 10 * 1000;
@@ -33,7 +32,6 @@ var run = function(){
   console.log('start to get status, interval:' + interval);
   setInterval(function(){
     getAllStatus(function(err, infos){
-      var hostName = os.hostname();
       _.each(infos, function(v, k){
         switch(k){
           case 'memory':
@@ -77,6 +75,7 @@ var run = function(){
             break;
         }
       });
+      client.flush();
     });
   }, interval);
 };

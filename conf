@@ -7,12 +7,13 @@
     "filter" : ["sda"]
   },
   "memory" : {
-    "unit" : "mb"
+    "unit" : "gb"
   },
   "stats" : {
-    "host" : "127.0.0.1",
-    "port" : "9300",
-    "category" : "profs-stats-black"
+    "host" : "192.168.1.19",
+    "port" : "6000",
+    "category" : "profs-stats-black",
+    "bufferSize" : 100
   },
   "interval" : 10000
 }
