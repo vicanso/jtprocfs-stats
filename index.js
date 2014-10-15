@@ -48,7 +48,7 @@ var run = function(){
                 if(i){
                   name += i;
                 }
-                client.gauge(name + '-' + k1, v1);
+                client.gauge(name + '.' + k1, v1);
               });
             });
             client.gauge('procs_running', v.procs_running);
@@ -67,12 +67,12 @@ var run = function(){
           case 'net':
             _.each(v, function(v, interfaceName){
               _.each(v, function(infos, k){
-                var name = interfaceName + '-' + k;
+                var name = interfaceName + '.' + k;
                 _.each(infos, function(v1, k1){
                   if(k1 == 'rate'){
-                    client.gauge(name + '-' + k1, v1);
+                    client.gauge(name + '.' + k1, v1);
                   }else{
-                    client.count(name + '-' + k1, v1);
+                    client.count(name + '.' + k1, v1);
                   }
                   
                 });
@@ -83,7 +83,7 @@ var run = function(){
           case 'disk':
             _.each(v, function(v, diviceName){
               _.each(v, function(v, k){
-                var name = diviceName + '-' + k;
+                var name = diviceName + '.' + k;
                 client.gauge(name, v);
               });
             });
