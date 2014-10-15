@@ -20,7 +20,8 @@ var getAllStatus = function(cbf){
     tcp : tcp.getStatus,
     udp : udp.getStatus,
     memory : memory.getStatus,
-    net : net.getStatus
+    net : net.getStatus,
+    disk : disk.getStatus
   }, cbf);
 };
 
@@ -78,6 +79,14 @@ var run = function(){
               });
             });
             break;
+
+          case 'disk':
+            _.each(v, function(v, diviceName){
+              _.each(v, function(v, k){
+                var name = diviceName + '.' + k;
+                client.gauge(name, v);
+              });
+            });
         }
       });
       client.flush();
