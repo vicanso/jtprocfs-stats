@@ -89,7 +89,6 @@ var run = function(){
             });
         }
       });
-      client.flush();
     });
   }, interval);
 };
