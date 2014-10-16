@@ -84,7 +84,7 @@ var run = function(){
             _.each(v, function(v, diviceName){
               _.each(v, function(v, k){
                 var name = diviceName + '.' + k;
-                client.gauge(name, v);
+                client.count(name, v);
               });
             });
         }
@@ -94,9 +94,7 @@ var run = function(){
   }, interval);
 };
 
-d.run(function(){
-  run();
-});
+d.run(run);
 
 
 

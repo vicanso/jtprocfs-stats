@@ -13,7 +13,7 @@ var conf = {
     host : 'localhost',
     port : '6000',
     category : 'profs-stats-blue',
-    bufferSize : 100
+    bufferSize : 1000
   },
   interval : 10000
 };
