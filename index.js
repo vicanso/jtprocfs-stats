@@ -5,6 +5,7 @@ var unix = require('./lib/unix');
 var net = require('./lib/net');
 var disk = require('./lib/disk');
 var memory = require('./lib/memory');
+var diskPath = require('./lib/disk_path');
 var async = require('async');
 var _ = require('underscore');
 var domain = require('domain');
@@ -21,6 +22,7 @@ var getAllStatus = function(cbf){
     udp : udp.getStatus,
     memory : memory.getStatus,
     net : net.getStatus,
+    path : diskPath.getStatus,
     disk : disk.getStatus
   }, cbf);
 };
@@ -87,6 +89,13 @@ var run = function(){
                 client.count(name, v);
               });
             });
+            break;
+          case 'path':
+            _.each(v, function(v){
+              client.gauge('pathFree.' + v.path, v.free);
+              client.average('pathWriteRate.' + v.path, v.rate);
+            });
+            break;
         }
       });
     });

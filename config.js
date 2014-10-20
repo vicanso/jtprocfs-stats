@@ -9,6 +9,9 @@ var conf = {
   disk : {
     filter : ['xvda1']
   },
+  path : {
+    mount : ['/']
+  },
   stats : {
     host : 'localhost',
     port : '6000',
