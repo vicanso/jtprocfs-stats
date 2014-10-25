@@ -17,7 +17,7 @@ var conf = {
     port : '6000',
     category : 'profs-stats-blue'
   },
-  interval : 10000
+  interval : 1000
 };
 
 

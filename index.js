@@ -39,7 +39,7 @@ var run = function(){
         switch(k){
           case 'memory':
             _.each(v, function(v1, k1){
-              client.gauge(k1, v1);
+              client.gauge('mem.' + k1, v1);
             });
             break;
 
