@@ -17,7 +17,7 @@ var client = new JTStatsClient(config.get('stats'));
 
 var getAllStatus = function(cbf){
   async.parallel({
-    cpu : cpu.getStatus,
+    cpu : cpu.getStatus
     tcp : tcp.getStatus,
     udp : udp.getStatus,
     memory : memory.getStatus,
@@ -33,7 +33,7 @@ d.on('error', function(err) {
 });
 var run = function(){
   console.log('start to get status, interval:' + interval);
-  setInterval(function(){
+  var statsHandler = function(){
     getAllStatus(function(err, infos){
       _.each(infos, function(v, k){
         switch(k){
@@ -98,8 +98,11 @@ var run = function(){
             break;
         }
       });
+      _.delay(statsHandler, interval);
     });
-  }, interval);
+  };
+  _.delay(statsHandler, interval);
+
 };
 
 d.run(run);
