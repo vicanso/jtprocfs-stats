@@ -17,7 +17,7 @@ var client = new JTStatsClient(config.get('stats'));
 
 var getAllStatus = function(cbf){
   async.parallel({
-    cpu : cpu.getStatus
+    cpu : cpu.getStatus,
     tcp : tcp.getStatus,
     udp : udp.getStatus,
     memory : memory.getStatus,
