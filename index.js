@@ -10,6 +10,7 @@ var async = require('async');
 var _ = require('underscore');
 var domain = require('domain');
 var config = require('./config');
+var bytes = require('bytes');
 var interval = config.get('interval') || 10 * 1000;
 var JTStatsClient = require('jtstats_client');
 var client = new JTStatsClient(config.get('stats'));
@@ -27,9 +28,10 @@ var getAllStatus = function(cbf){
   }, cbf);
 };
 
+
 var d = domain.create();
 d.on('error', function(err) {
-  console.error('Caught error!', err);
+  console.error('Caught error: %s, stack:%s , %s', err.message, err.stack, new Date());
 });
 var run = function(){
   console.log('start to get status, interval:' + interval);
@@ -99,6 +101,7 @@ var run = function(){
         }
       });
       _.delay(statsHandler, interval);
+      console.log('memory rss:%s %s', bytes(process.memoryUsage().rss), new Date());
     });
   };
   _.delay(statsHandler, interval);
@@ -106,40 +109,3 @@ var run = function(){
 };
 
 d.run(run);
-
-
-
-// setInterval(function(){
-//   cpu.getStatus(function(err, infos){
-//     console.dir(infos);
-//   });
-// }, 10000);
-
-// tcp.getStatus(function(err, infos){
-//   console.dir(infos);
-// });
-
-
-// memory.getStatus(function(err, infos){
-//   console.dir(infos);
-// });
-
-// udp.getStatus(function(err, infos){
-//   console.dir(infos);
-// });
-
-// unix.getStatus(function(err, infos){
-//   console.dir(infos);
-// });
-
-// setInterval(function(){
-//   net.getStatus(function(err, infos){
-//     console.dir(infos);
-//   });
-// }, 2000);
-
-// setInterval(function(){
-//   disk.getStatus(function(err, infos){
-//     console.dir(infos);
-//   });
-// }, 2000);
