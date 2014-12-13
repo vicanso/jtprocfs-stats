@@ -1,3 +1,6 @@
+'use strict';
+var jtLogger = require('jtlogger');
+jtLogger.appPath = __dirname + '/';
 var cpu = require('./lib/cpu');
 var tcp = require('./lib/tcp');
 var udp = require('./lib/udp');
@@ -16,6 +19,7 @@ var JTStatsClient = require('jtstats_client');
 var client = new JTStatsClient(config.get('stats'));
 
 
+
 var getAllStatus = function(cbf){
   async.parallel({
     cpu : cpu.getStatus,
@@ -31,7 +35,7 @@ var getAllStatus = function(cbf){
 
 var d = domain.create();
 d.on('error', function(err) {
-  console.error('Caught error: %s, stack:%s , %s', err.message, err.stack, new Date());
+  console.error('Caught error: %s, stack:%s', err.message, err.stack);
 });
 var run = function(){
   console.log('start to get status, interval:' + interval);
@@ -101,7 +105,7 @@ var run = function(){
         }
       });
       _.delay(statsHandler, interval);
-      console.log('memory rss:%s %s', bytes(process.memoryUsage().rss), new Date());
+      console.log('memory rss:%s', bytes(process.memoryUsage().rss));
     });
   };
   _.delay(statsHandler, interval);

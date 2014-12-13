@@ -1,3 +1,4 @@
+'use strict';
 var conf = {
   net : {
     unit : 'kb',
