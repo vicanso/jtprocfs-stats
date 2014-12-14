@@ -27,7 +27,7 @@ var getAllStatus = function(cbf){
     udp : udp.getStatus,
     memory : memory.getStatus,
     net : net.getStatus,
-    path : diskPath.getStatus,
+    // path : diskPath.getStatus,
     disk : disk.getStatus
   }, cbf);
 };
