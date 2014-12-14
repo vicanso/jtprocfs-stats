@@ -3,7 +3,7 @@ var jtLogger = require('jtlogger');
 jtLogger.appPath = __dirname + '/';
 if(process.env.NODE_ENV === 'production'){
   jtLogger.mode = 'file';
-  jtlogger.logPath = '/vicanso/log/profs-stats';
+  jtLogger.logPath = '/vicanso/log/profs-stats';
 }
 
 var cpu = require('./lib/cpu');
