@@ -1,6 +1,11 @@
 'use strict';
 var jtLogger = require('jtlogger');
 jtLogger.appPath = __dirname + '/';
+if(process.env.NODE_ENV === 'production'){
+  jtLogger.mode = 'file';
+  jtlogger.logPath = '/vicanso/log/profs-stats';
+}
+
 var cpu = require('./lib/cpu');
 var tcp = require('./lib/tcp');
 var udp = require('./lib/udp');
