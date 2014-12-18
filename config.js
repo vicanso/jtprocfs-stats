@@ -15,7 +15,7 @@ var conf = {
   },
   stats : {
     host : 'localhost',
-    port : '6000',
+    port : 6000,
     category : 'profs-stats-blue'
   },
   interval : 1000
