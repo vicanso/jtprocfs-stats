@@ -1,5 +1,6 @@
 'use strict';
 var jtLogger = require('jtlogger');
+var debug = process.env.DEBUG;
 jtLogger.appPath = __dirname + '/';
 if(process.env.NODE_ENV === 'production'){
   jtLogger.mode = 'file';
@@ -14,7 +15,7 @@ var net = require('./lib/net');
 var disk = require('./lib/disk');
 var memory = require('./lib/memory');
 var async = require('async');
-var _ = require('underscore');
+var _ = require('lodash');
 var domain = require('domain');
 var config = require('./config');
 var bytes = require('bytes');
@@ -44,6 +45,9 @@ var run = function(){
   console.log('start to get status, interval:' + interval);
   var statsHandler = function(){
     getAllStatus(function(err, infos){
+      if(debug && infos){
+        console.log(JSON.stringify(infos));
+      }
       _.each(infos, function(v, k){
         switch(k){
           case 'memory':

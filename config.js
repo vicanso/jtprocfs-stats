@@ -10,15 +10,12 @@ var conf = {
   disk : {
     filter : ['xvda1']
   },
-  path : {
-    mount : ['/']
-  },
   stats : {
     host : 'localhost',
     port : 6000,
     category : 'profs-stats-blue'
   },
-  interval : 1000
+  interval : 500
 };
 
 
