@@ -2,10 +2,6 @@
 var jtLogger = require('jtlogger');
 var debug = process.env.DEBUG;
 jtLogger.appPath = __dirname + '/';
-if(process.env.NODE_ENV === 'production'){
-  jtLogger.mode = 'file';
-  jtLogger.logPath = '/vicanso/log/profs-stats';
-}
 
 var cpu = require('./lib/cpu');
 var tcp = require('./lib/tcp');
