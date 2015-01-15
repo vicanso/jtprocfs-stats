@@ -39,6 +39,7 @@ d.on('error', function(err) {
 });
 var run = function(){
   console.log('start to get status, interval:' + interval);
+  var runningCount = 0;
   var statsHandler = function(){
     getAllStatus(function(err, infos){
       if(debug && infos){
@@ -102,7 +103,10 @@ var run = function(){
         }
       });
       _.delay(statsHandler, interval);
-      console.log('memory rss:%s', bytes(process.memoryUsage().rss));
+      if(runningCount % 100 == 0){
+        console.log('memory rss:%s', bytes(process.memoryUsage().rss));
+      }
+      runningCount++;
     });
   };
   _.delay(statsHandler, interval);

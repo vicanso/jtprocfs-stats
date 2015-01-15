@@ -1,0 +1,12 @@
+{
+  "name" : "jtprocfs-stats",
+  "instances" : 1,
+  "merge_logs" : true,
+  "script" : "index.js",
+  "log_file" : "/vicanso/log/jtprocfs-stats.log",
+  "error_file" : "/vicanso/log/jtprocfs-stats-error.log",
+  "out_file" : "/vicanso/log/jtprocfs-stats-out.log",
+  "env" : {
+    "NODE_ENV" : "production"
+  }
+}

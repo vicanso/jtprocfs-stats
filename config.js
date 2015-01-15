@@ -2,13 +2,13 @@
 var conf = {
   net : {
     unit : 'kb',
-    filter : ['eth0', 'eth1'],
+    filter : ['em1'],
   },
   memory : {
-    unit : 'mb'
+    unit : 'gb'
   },
   disk : {
-    filter : ['xvda1']
+    filter : ['sda1']
   },
   stats : {
     host : 'localhost',
