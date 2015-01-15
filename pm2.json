@@ -2,6 +2,7 @@
   "name" : "jtprocfs-stats",
   "instances" : 1,
   "merge_logs" : true,
+  "max-memory-restart" : "100M",
   "script" : "index.js",
   "log_file" : "/vicanso/log/jtprocfs-stats.log",
   "error_file" : "/vicanso/log/jtprocfs-stats-error.log",
