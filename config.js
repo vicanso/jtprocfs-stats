@@ -13,7 +13,7 @@ var conf = {
   stats : {
     host : 'localhost',
     port : 6000,
-    category : 'sever-black'
+    category : 'server-black'
   },
   interval : 500
 };
