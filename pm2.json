@@ -4,9 +4,9 @@
   "merge_logs" : true,
   "max-memory-restart" : "100M",
   "script" : "index.js",
-  "log_file" : "/vicanso/log/jtprocfs-stats.log",
-  "error_file" : "/vicanso/log/jtprocfs-stats-error.log",
-  "out_file" : "/vicanso/log/jtprocfs-stats-out.log",
+  "log_file" : "/vicanso/pm2/log/jtprocfs-stats.log",
+  "error_file" : "/vicanso/pm2/log/jtprocfs-stats-error.log",
+  "out_file" : "/vicanso/pm2/log/jtprocfs-stats-out.log",
   "env" : {
     "NODE_ENV" : "production"
   }
