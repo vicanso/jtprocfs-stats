@@ -4,6 +4,9 @@ var conf = {
     unit : 'kb',
     filter : ['em1', 'lo'],
   },
+  cpu : {
+    filter : ['cpu']
+  },
   memory : {
     unit : 'gb'
   },
