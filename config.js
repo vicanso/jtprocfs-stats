@@ -2,7 +2,7 @@
 var conf = {
   net : {
     unit : 'kb',
-    filter : ['em1', 'lo'],
+    filter : ['eth0', 'lo'],
   },
   cpu : {
     filter : ['cpu']
@@ -11,7 +11,7 @@ var conf = {
     unit : 'gb'
   },
   disk : {
-    filter : ['sda']
+    filter : ['xvda1']
   },
   stats : {
     host : 'localhost',
