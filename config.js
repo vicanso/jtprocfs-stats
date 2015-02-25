@@ -1,4 +1,6 @@
 'use strict';
+var os = require('os');
+var statsServerInfo = process.env.STATS_SERVER.split(':');
 var conf = {
   net : {
     unit : 'kb',
@@ -14,9 +16,9 @@ var conf = {
     filter : ['xvda1']
   },
   stats : {
-    host : 'stats',
-    port : 6000,
-    category : 'black'
+    host : statsServerInfo[0],
+    port : statsServerInfo[1],
+    category : os.hostname()
   },
   interval : 500
 };

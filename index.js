@@ -1,7 +1,16 @@
 'use strict';
+var config = require('./config');
+var os = require('os');
 var jtLogger = require('jtlogger');
 var debug = process.env.DEBUG;
 jtLogger.appPath = __dirname + '/';
+var logServerInfo = process.env.LOG_SERVER.split(':');
+
+jtLogger.add(jtLogger.transports.UDP, {
+  host : logServerInfo[0],
+  port : logServerInfo[1]
+});
+jtLogger.logPrefix = '[profs-stats:' + os.hostname() + ']';
 
 var cpu = require('./lib/cpu');
 var tcp = require('./lib/tcp');
@@ -13,7 +22,6 @@ var memory = require('./lib/memory');
 var async = require('async');
 var _ = require('lodash');
 var domain = require('domain');
-var config = require('./config');
 var bytes = require('bytes');
 var interval = config.get('interval') || 10 * 1000;
 var JTStatsClient = require('jtstats_client');

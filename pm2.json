@@ -9,6 +9,7 @@
   "out_file" : "/vicanso/pm2/log/jtprocfs-stats-out.log",
   "env" : {
     "NODE_ENV" : "production",
-    "LOG_SERVEr" : "logServer:2900"
+    "LOG_SERVER" : "log:2900",
+    "STATS_SERVER" : "stats:6000"
   }
 }
