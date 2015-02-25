@@ -14,7 +14,7 @@ var conf = {
     filter : ['xvda1']
   },
   stats : {
-    host : 'localhost',
+    host : 'stats',
     port : 6000,
     category : 'black'
   },
