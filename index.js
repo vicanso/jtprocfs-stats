@@ -113,7 +113,8 @@ var run = function(){
       });
       _.delay(statsHandler, interval);
       if(runningCount % 100 == 0){
-        console.log('memory rss:%s', bytes(process.memoryUsage().rss));
+        var memoryUsage = process.memoryUsage();
+        console.log('memory rss:%s heapTotal:%s heapUsed:%s', bytes(memoryUsage.rss), bytes(memoryUsage.heapTotal), bytes(memoryUsage.heapUsed));
       }
       runningCount++;
     });
