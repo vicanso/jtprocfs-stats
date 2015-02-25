@@ -10,6 +10,7 @@ jtLogger.add(jtLogger.transports.UDP, {
   host : logServerInfo[0],
   port : logServerInfo[1]
 });
+jtLogger.add(jtLogger.transport.Console);
 jtLogger.logPrefix = '[profs-stats:' + os.hostname() + ']';
 
 var cpu = require('./lib/cpu');
