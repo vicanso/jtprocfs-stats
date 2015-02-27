@@ -41,10 +41,9 @@ d.on('error', function(err) {
 });
 var run = function(serverList){
   initLog(serverList.log);
+  console.info(serverList);
   var options = serverList.stats;
-  console.dir(options);
   options.category = os.hostname();
-  console.dir(options);
   var client = new JTStatsClient(options);
   console.log('start to get status, interval:' + interval);
   var runningCount = 0;
@@ -127,7 +126,6 @@ d.run(function(){
     if(err){
       console.error(err);
     }else{
-      console.dir(serverList);
       run(serverList);
     }
   });
@@ -139,7 +137,6 @@ function initLog(server){
   jtLogger.appPath = __dirname + '/';
 
   if(env !== 'development'){
-    var logServerInfo = process.env.LOG_SERVER.split(':');
     jtLogger.add(jtLogger.transports.UDP, server);
   }
 
