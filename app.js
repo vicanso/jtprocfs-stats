@@ -1,18 +1,11 @@
 'use strict';
 var config = require('./config');
 var os = require('os');
-var jtLogger = require('jtlogger');
+var env = process.env.NODE_ENV || 'development';
 var debug = process.env.DEBUG;
-jtLogger.appPath = __dirname + '/';
-var logServerInfo = process.env.LOG_SERVER.split(':');
+var request = require('request');
 
-jtLogger.add(jtLogger.transports.UDP, {
-  host : logServerInfo[0],
-  port : logServerInfo[1]
-});
-jtLogger.add(jtLogger.transports.Console);
-jtLogger.logPrefix = '[profs-stats:' + os.hostname() + ']';
-
+var os = require('os');
 var cpu = require('./lib/cpu');
 var tcp = require('./lib/tcp');
 var udp = require('./lib/udp');
@@ -26,7 +19,7 @@ var domain = require('domain');
 var bytes = require('bytes');
 var interval = config.get('interval') || 10 * 1000;
 var JTStatsClient = require('jtstats_client');
-var client = new JTStatsClient(config.get('stats'));
+
 
 
 
@@ -46,7 +39,13 @@ var d = domain.create();
 d.on('error', function(err) {
   console.error('Caught error: %s, stack:%s', err.message, err.stack);
 });
-var run = function(){
+var run = function(serverList){
+  initLog(serverList.log);
+  var options = serverList.stats;
+  console.dir(options);
+  options.category = os.hostname();
+  console.dir(options);
+  var client = new JTStatsClient(options);
   console.log('start to get status, interval:' + interval);
   var runningCount = 0;
   var statsHandler = function(){
@@ -123,4 +122,57 @@ var run = function(){
 
 };
 
-d.run(run);
+d.run(function(){
+  getServers(function(err, serverList){
+    if(err){
+      console.error(err);
+    }else{
+      console.dir(serverList);
+      run(serverList);
+    }
+  });
+});
+
+
+function initLog(server){
+  var jtLogger = require('jtlogger');
+  jtLogger.appPath = __dirname + '/';
+
+  if(env !== 'development'){
+    var logServerInfo = process.env.LOG_SERVER.split(':');
+    jtLogger.add(jtLogger.transports.UDP, server);
+  }
+
+  jtLogger.add(jtLogger.transports.Console);
+  jtLogger.logPrefix = '[profs-stats][' + os.hostname() + ']';
+}
+
+
+function getServers(cbf){
+  if(env === 'development'){
+    cbf(null, {
+      log : {
+        host : 'localhost',
+        port : 2900
+      },
+      stats : {
+        host : 'localhost',
+        port : 6000
+      }
+    });
+  }else{
+    request.get('http://jt-service.oss-cn-shenzhen.aliyuncs.com/server.json', function(err, res, body){
+      if(err){
+        cbf(err);
+        return;
+      }
+      try{
+        var data = JSON.parse(body);
+      }catch(err){
+        cbf(err);
+        return;
+      }
+      cbf(null, data);
+    });
+  }
+}

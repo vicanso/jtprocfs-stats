@@ -3,13 +3,11 @@
   "instances" : 1,
   "merge_logs" : true,
   "max_memory_restart" : "200M",
-  "script" : "index.js",
+  "script" : "app.js",
   "log_file" : "/vicanso/pm2/log/jtprocfs-stats.log",
   "error_file" : "/vicanso/pm2/log/jtprocfs-stats-error.log",
   "out_file" : "/vicanso/pm2/log/jtprocfs-stats-out.log",
   "env" : {
-    "NODE_ENV" : "production",
-    "LOG_SERVER" : "log:2900",
-    "STATS_SERVER" : "stats:6000"
+    "NODE_ENV" : "production"
   }
 }

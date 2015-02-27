@@ -10,7 +10,8 @@
     "jtlogger": "0.1.4",
     "jtstats_client": "0.1.3",
     "lodash": "^2.4.1",
-    "procfs-stats": "0.0.3"
+    "procfs-stats": "0.0.3",
+    "request": "^2.53.0"
   },
   "devDependencies": {}
 }
