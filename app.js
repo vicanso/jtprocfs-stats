@@ -110,7 +110,7 @@ var run = function(serverList){
         }
       });
       _.delay(statsHandler, interval);
-      if(runningCount % 100 == 0){
+      if(runningCount % 100 === 0){
         var memoryUsage = process.memoryUsage();
         console.log('memory rss:%s heapTotal:%s heapUsed:%s', bytes(memoryUsage.rss), bytes(memoryUsage.heapTotal), bytes(memoryUsage.heapUsed));
       }
@@ -160,13 +160,13 @@ function getServers(cbf){
       });
     });
   }else{
-    request.get('http://jt-service.oss-cn-shenzhen.aliyuncs.com/server.json', function(err, res, body){
+    request.get('http://jt-service.oss-cn-shenzhen.aliyuncs.com/server.json', function(err, res, data){
       if(err){
         cbf(err);
         return;
       }
       try{
-        var data = JSON.parse(body);
+        data = JSON.parse(data);
       }catch(err){
         cbf(err);
         return;
