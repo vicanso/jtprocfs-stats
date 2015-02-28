@@ -147,15 +147,17 @@ function initLog(server){
 
 function getServers(cbf){
   if(env === 'development'){
-    cbf(null, {
-      log : {
-        host : 'localhost',
-        port : 2900
-      },
-      stats : {
-        host : 'localhost',
-        port : 6000
-      }
+    setImmediate(function(){
+      cbf(null, {
+        log : {
+          host : 'localhost',
+          port : 2900
+        },
+        stats : {
+          host : 'localhost',
+          port : 6000
+        }
+      });
     });
   }else{
     request.get('http://jt-service.oss-cn-shenzhen.aliyuncs.com/server.json', function(err, res, body){
