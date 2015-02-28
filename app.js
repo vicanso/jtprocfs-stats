@@ -151,7 +151,7 @@ function getServers(cbf){
       cbf(null, {
         log : {
           host : 'localhost',
-          port : 2900
+          port : 7000
         },
         stats : {
           host : 'localhost',

@@ -1,7 +1,7 @@
 {
   "name": "jtprocfs-stats",
   "description": "get the system performance",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "index",
   "repository": "git@github.com:vicanso/jtprocfs-stats.git",
   "dependencies": {
@@ -13,5 +13,8 @@
     "procfs-stats": "0.0.3",
     "request": "^2.53.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-jshint": "^1.9.2"
+  }
 }
