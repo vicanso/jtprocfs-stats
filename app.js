@@ -41,7 +41,7 @@ d.on('error', function(err) {
 });
 var run = function(serverList){
   initLog(serverList.log);
-  console.info(serverList);
+  console.info('serverList:%j', serverList);
   var options = serverList.stats;
   options.category = os.hostname();
   var client = new JTStatsClient(options);
@@ -146,32 +146,19 @@ function initLog(server){
 
 
 function getServers(cbf){
-  if(env === 'development'){
-    setImmediate(function(){
-      cbf(null, {
-        log : {
-          host : 'localhost',
-          port : 7000
-        },
-        stats : {
-          host : 'localhost',
-          port : 6000
-        }
-      });
-    });
-  }else{
-    request.get('http://jt-service.oss-cn-shenzhen.aliyuncs.com/server.json', function(err, res, data){
-      if(err){
-        cbf(err);
-        return;
-      }
-      try{
-        data = JSON.parse(data);
-      }catch(err){
-        cbf(err);
-        return;
-      }
-      cbf(null, data);
-    });
-  }
+  var serverUrl = 'http://jt-service.oss-cn-shenzhen.aliyuncs.com/server.json';
+  request.get(serverUrl, function(err, res, data){
+    if(err){
+      cbf(err);
+      return;
+    }
+    try{
+      data = JSON.parse(data);
+    }catch(err){
+      cbf(err);
+      return;
+    }
+    var serverList = data[env] || data.development;
+    cbf(null, serverList);
+  });
 }
